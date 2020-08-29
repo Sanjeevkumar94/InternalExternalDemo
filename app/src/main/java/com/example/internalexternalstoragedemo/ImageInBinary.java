@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,7 +18,8 @@ import java.io.InputStream;
 
 public class ImageInBinary extends AppCompatActivity {
 
-    Button btn_assets, btn_drawable;
+    Button btn_assets, btn_drawable,btn_get_image;
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class ImageInBinary extends AppCompatActivity {
 
         btn_drawable = findViewById(R.id.btn_drawable);
         btn_assets = findViewById(R.id.btn_assets);
+        btn_get_image = findViewById(R.id.btn_get_image);
+        img = findViewById(R.id.img);
 
         btn_assets.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +84,22 @@ public class ImageInBinary extends AppCompatActivity {
             }
 
 
+        });
+
+        btn_get_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Bitmap bitmap =null;
+                    InputStream inputStream=null;
+
+                try {
+                    inputStream = openFileInput("mypm.jpeg");
+                    bitmap = BitmapFactory.decodeStream(inputStream);
+                    img.setImageBitmap(bitmap);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 
