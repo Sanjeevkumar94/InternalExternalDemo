@@ -28,4 +28,11 @@
         android:text="Create File"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_read"
+        android:text="Read File"
+        />
+
 </LinearLayout>

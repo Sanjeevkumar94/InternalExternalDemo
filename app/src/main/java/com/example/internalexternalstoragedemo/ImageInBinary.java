@@ -36,7 +36,7 @@ public class ImageInBinary extends AppCompatActivity {
 
                 try {
                     fileOutputStream = openFileOutput("mypm.jpeg",MODE_PRIVATE);
-                    data.compress(Bitmap.CompressFormat.JPEG,50,fileOutputStream);
+                    data.compress(Bitmap.CompressFormat.JPEG,1,fileOutputStream);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
