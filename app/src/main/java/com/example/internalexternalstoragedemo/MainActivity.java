@@ -17,7 +17,7 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText et_text;
-    Button btn_create,btn_read;
+    Button btn_create,btn_read,btn_delete,show_all;
     public static final String FILE_NAME = "mytextfile";
     FileOutputStream fileOutputStream = null;
     TextView tv_moutputtxt;
@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_read = findViewById(R.id.btn_read);
         et_text = findViewById(R.id.et_text);
         tv_moutputtxt = findViewById(R.id.tv_moutputtxt);
+        btn_delete = findViewById(R.id.btn_delete);
+        show_all = findViewById(R.id.show_all);
         btn_create.setOnClickListener(this);
         btn_read.setOnClickListener(this);
         String path = getFilesDir().getAbsolutePath();
@@ -76,7 +78,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     e.printStackTrace();
                 }
                 tv_moutputtxt.setText(stringBuffer.toString());
+
+            case R.id.btn_delete:
+                deleteFile(FILE_NAME);
         }
 
+
     }
+
+
+
+
 }

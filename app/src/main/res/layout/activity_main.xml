@@ -35,4 +35,17 @@
         android:text="Read File"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_delete"
+        android:text="Delete File"
+        />
+ <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_all"
+        android:text="Show file"
+        />
+
 </LinearLayout>
