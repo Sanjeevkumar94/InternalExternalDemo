@@ -1,6 +1,7 @@
 package com.example.internalexternalstoragedemo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,8 +19,9 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText et_text;
-    Button btn_create, btn_read, btn_delete, show_all;
+    Button btn_create, btn_read, btn_delete, show_all,btn_create_dir;
     public static final String FILE_NAME = "mytextfile";
+    public static final String DIR_NAME = "my_dir";
     FileOutputStream fileOutputStream = null;
     TextView tv_moutputtxt;
 
@@ -31,9 +34,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         et_text = findViewById(R.id.et_text);
         tv_moutputtxt = findViewById(R.id.tv_moutputtxt);
         btn_delete = findViewById(R.id.btn_delete);
+        btn_create_dir = findViewById(R.id.btn_create_dir);
         show_all = findViewById(R.id.show_all);
         btn_create.setOnClickListener(this);
         btn_read.setOnClickListener(this);
+        btn_create_dir.setOnClickListener(this);
         show_all.setOnClickListener(this);
         String path = getFilesDir().getAbsolutePath();
         tv_moutputtxt.setText(path);
@@ -88,6 +93,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 for (String fileName : filesNames) {
                     tv_moutputtxt.append(fileName + "\n");
                     Log.d("Filenames<<<",fileName);
+                }
+            case R.id.btn_create_dir:
+                File path = getDir(DIR_NAME,MODE_PRIVATE);
+                File file = new File(path,"abc.txt");
+                String dataHi = "Hi";
+
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                    fileOutputStream.write(dataHi.getBytes());
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
         }
 
