@@ -17,7 +17,7 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText et_text;
-    Button btn_create,btn_read,btn_delete,show_all;
+    Button btn_create, btn_read, btn_delete, show_all;
     public static final String FILE_NAME = "mytextfile";
     FileOutputStream fileOutputStream = null;
     TextView tv_moutputtxt;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         show_all = findViewById(R.id.show_all);
         btn_create.setOnClickListener(this);
         btn_read.setOnClickListener(this);
+        show_all.setOnClickListener(this);
         String path = getFilesDir().getAbsolutePath();
         tv_moutputtxt.setText(path);
 
@@ -60,17 +61,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             e.printStackTrace();
                         }
                     }
-              }
+                }
                 break;
             case R.id.btn_read:
-            StringBuffer stringBuffer = new StringBuffer();
+                StringBuffer stringBuffer = new StringBuffer();
                 InputStream inputStream = null;
                 try {
                     inputStream = openFileInput(FILE_NAME);
                     int read;
-                    while ((read=inputStream.read())!=-1){
-                        Log.d("inputStream",""+read);
-                        stringBuffer.append((char)read);
+                    while ((read = inputStream.read()) != -1) {
+                        Log.d("inputStream", "" + read);
+                        stringBuffer.append((char) read);
                     }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -81,12 +82,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_delete:
                 deleteFile(FILE_NAME);
+            case R.id.show_all:
+                String[] filesNames = fileList();
+
+                for (String fileName : filesNames) {
+                    tv_moutputtxt.append(fileName + "\n");
+                    Log.d("Filenames<<<",fileName);
+                }
         }
 
 
     }
-
-
 
 
 }
